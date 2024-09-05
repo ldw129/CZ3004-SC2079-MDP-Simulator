@@ -215,9 +215,13 @@ export default function Simulator() {
     // Set computing to true, act like a lock
     setIsComputing(true);
     // Call the query function from the API
-    QueryAPI.query(obstacles, robotX, robotY, robotDir, (data, err) => {
+    console.log(obstacles, robotX, robotY, robotDir);
+    QueryAPI.query(obstacles, robotX, robotY, robotDir, (data, err) => { // (data, err) is the callback parameter
       if (data) {
         // If the data is valid, set the path
+        console.log("Data: ", data);
+        console.log("Path: ", path);
+        // console.log(data.data.path);
         setPath(data.data.path);
         // Set the commands
         const commands = [];

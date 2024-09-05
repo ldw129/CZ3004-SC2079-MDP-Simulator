@@ -21,6 +21,7 @@ export default class QueryAPI extends BaseAPI {
     // Send the request to the backend server
     this.JSONRequest("/path", methodType.post, {}, {}, content)
       .then((res) => {
+        console.log("Result: ", res);
         if (callback) {
           callback({
             data: res,
