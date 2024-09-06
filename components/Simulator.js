@@ -219,10 +219,10 @@ export default function Simulator() {
     QueryAPI.query(obstacles, robotX, robotY, robotDir, (data, err) => { // (data, err) is the callback parameter
       if (data) {
         // If the data is valid, set the path
-        console.log("Data: ", data);
-        console.log("Path: ", path);
-        // console.log(data.data.path);
         setPath(data.data.path);
+        console.log("Data: ", data);
+        console.log("Data.data.path: ", data.data.path);
+        
         // Set the commands
         const commands = [];
         for (let x of data.data.commands) {
@@ -232,7 +232,9 @@ export default function Simulator() {
           }
           commands.push(x);
         }
+        console.log("Commands:")
         setCommands(commands);
+        console.log("Commands: ", commands);
       }
       // Set computing to false, release the lock
       setIsComputing(false);
@@ -376,6 +378,10 @@ export default function Simulator() {
     if (page >= path.length) return;
     setRobotState(path[page]);
   }, [page, path]);
+
+  useEffect(() => {
+    console.log("Updated path: ", path);
+  }, [path]);
 
   return (
     <div className="flex flex-col items-center justify-center">
